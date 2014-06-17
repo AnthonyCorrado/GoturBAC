@@ -1,6 +1,12 @@
-Rails.application.routes.draw do
-  get "venues/index"
-  get "venues/show"
+GoturBAC::Application.routes.draw do
+
+  resources :users
+  resources :venues
+
+  root 'users#index'
+
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
