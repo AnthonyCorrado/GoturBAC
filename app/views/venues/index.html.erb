@@ -1,2 +1,18 @@
 <h1>Venues#index</h1>
 <p>Find me in app/views/venues/index.html.erb</p>
+
+<%= form_tag venues_path, :method => 'get' do %>
+          <%= text_field_tag :venue, params[:venue] %>
+          <%= submit_tag "Search", :name => nil %>
+          <% end %>
+
+<% @venues.each do |v| %>
+
+<div class="col-md-4 border text-center row-height">
+      <h2><%= v['meta'] %></h2>
+      <%= v['notifications'] %><br>
+      <%= v['response']['venues'] %><br>
+</div>
+
+
+<% end %>
