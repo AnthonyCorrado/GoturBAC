@@ -1,0 +1,19 @@
+<h1><%= @user.name %>'s Profile</h1>
+
+<div id="profile-photo">
+          <% if @user.avatar_file_name %>
+            <%= image_tag @user.avatar.url(:medium) %><br /><br />
+          <% end %>
+        </div>
+
+        Name: <%= @user.name %>
+
+        Gender: <%= @user.gender %>
+
+        Weight: <%= @user.weight %>
+
+        Current BAC: <%= @user.current_bac %>
+
+        Preferred BAC: <%= @user.preferred_bac %>
+
+            <%=link_to "Edit Profile", edit_user_path(current_user), class: "small button" %>

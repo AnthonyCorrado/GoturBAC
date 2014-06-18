@@ -1,7 +1,7 @@
 GoturBAC::Application.routes.draw do
 
   resources :users
-  resources :venues
+  resources :venues, only: [:index, :show]
 
   root 'users#index'
 

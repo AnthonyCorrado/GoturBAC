@@ -10,9 +10,8 @@ has_attached_file :avatar, :styles => {:medium => "300x300>", :small => "150x150
 
 validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
-validates_presence_of :username, :email, :password
-validates_uniqueness_of :username, :email
-validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create
+validates_presence_of :name, :password
+validates_uniqueness_of :name
 
 
   def password

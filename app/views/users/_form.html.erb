@@ -1,0 +1,15 @@
+<%= form_for @user do |f| %>
+
+Name: <%= f.text_field :name %>
+
+Password: <%= f.password_field :password %>
+
+Avatar: <%= f.file_field :avatar %>
+
+Gender: <%= f.select :gender, [['M'], ['F']] %>
+
+Weight: <%= f.number_field :weight %>
+
+<%= f.submit "Submit", class: "small button" %>
+
+<% end %>
