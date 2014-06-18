@@ -13,7 +13,7 @@ end
     @user = User.new(user_params)
     if @user.save
       session_create # This method is inhereited from the applicaiton_controller
-      redirect_to user_path(:id), notice: "Welcome new user."
+      redirect_to user_path(current_user), notice: "Welcome new user."
     else
       flash[:danger] = "User could not be created"
       render :new
