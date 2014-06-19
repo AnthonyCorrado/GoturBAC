@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
 
 belongs_to :venue
 has_many :friendships
+has_many :user_drinks
+has_many :drinks, through: :user_drinks
 
 has_attached_file :avatar, :styles => {:medium => "300x300>", :small => "150x150#", :thumb => "45x45#" }
 

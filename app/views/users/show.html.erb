@@ -1,3 +1,37 @@
+<HEAD>
+
+<SCRIPT LANGUAGE="JavaScript">
+
+<!-- Begin
+function solveBAC(form) {
+var alcohol = eval(<%= (collection_select :user_drinks, :drink_ids, Drink.all, :id, :name).alcohol.to_json %>);
+var percent = eval(form.percent.value);
+var weight = eval(<%= @user.weight.to_json %>);
+var hours = eval(form.hours.value);
+
+var result = (alcohol * percent * 0.075 / weight) - (hours * 0.015);
+if (result < 0) {
+message = "There is a negligible amount of alcohol in your system.  You are not legally intoxicated.";
+result = "-- neglible amount --";
+}
+else {
+if (result == "NaN")
+mesage = "Please try again.";
+if (result > 0.08)
+message = "In MOST and possibly ALL states you would be considered intoxicated and arrested for DUI.";
+if (result < 0.08)
+message = "You are not legally intoxicated";
+}
+form.message.value = message;
+form.bacamount.value = result + " %";
+}
+//  End -->
+</script>
+</HEAD>
+
+<BODY>
+
+
 <h1><%= @user.name %>'s Profile</h1>
 
 <div id="profile-photo">
@@ -14,6 +48,7 @@
 
         Weight: <%= @user.weight %>
 
+<!-- Work in progress until I can set up all variable and make sure erb works for equations -->
         Current BAC: <%= @user.current_bac %>
 
         Preferred BAC: <%= @user.preferred_bac %>
@@ -21,3 +56,63 @@
             <%=link_to "Edit Profile", edit_user_path(current_user), class: "small button" %>
 
             <%= link_to "Log Out", session_path, :method => :delete %>
+
+            <%= form_for @user do |f| %>
+
+            Beers :<%= collection_select :user_drinks, :drink_ids, Drink.all, :id, :name %>
+
+            <% end %>
+
+
+<center>
+
+<form method=post name=bacform>
+<table border=4>
+<tr>
+<td align=center>
+Fluid Ounces Consumed
+</td>
+<td align=center>
+<input type=text name=ounces size=6>
+</td>
+<td align=center>
+Percent Alcohol
+</td>
+<td align=center>
+<input type=text name=percent size=6>
+</td>
+</tr>
+<tr>
+<td align=center>
+Hours Consuming Drink
+</td>
+<td align=center>
+<input type=text name=hours size=6>
+</td>
+</tr>
+<tr>
+<td colspan=4 align=center>
+<input type=button name=bac value="Calculate Your BAC %" onClick="javascript:solveBAC(this.form)">
+</td>
+</tr>
+<tr>
+<td align=center>
+BAC Percentage
+</td>
+<td colspan=3 align=center>
+<input type=text name=bacamount size=21>
+</td>
+</tr>
+<tr>
+<td align=center>
+BAC Analysis
+</td>
+<td colspan=3 align=center>
+<textarea name=message rows=3 cols=35 wrap=virtual></textarea>
+</td>
+</tr>
+</table>
+</form>
+</center>
+
+</body>

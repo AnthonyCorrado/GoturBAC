@@ -1,5 +1,6 @@
 GoturBAC::Application.routes.draw do
 
+  resources :drinks
   resources :sessions
   resources :users
   resources :venues, only: [:index, :show]
