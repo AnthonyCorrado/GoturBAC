@@ -22,7 +22,7 @@ class Venue < ActiveRecord::Base
         venue ||= "general assembly"
 
           auth = { query: { apikey: 'CLIENT_ID', q: venue }}
-          venue_url = "https://api.foursquare.com/v2/venues/search.json"
+          venue_url = "https://api.foursquare.com/v2/venues/explore.json"
 
           response = HTTParty.get venue_url, auth
 
