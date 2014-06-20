@@ -4,7 +4,7 @@
 
 <!-- Begin
 function solveBAC(form) {
-var alcohol = eval(<%= (collection_select :user_drinks, :drink_ids, Drink.all, :id, :name).alcohol.to_json %>);
+var alcohol = eval(form.ounces.value);
 var percent = eval(form.percent.value);
 var weight = eval(<%= @user.weight.to_json %>);
 var hours = eval(form.hours.value);
@@ -59,10 +59,15 @@ form.bacamount.value = result + " %";
 
             <%= form_for @user do |f| %>
 
-            Beers :<%= collection_select :user_drinks, :drink_ids, Drink.all, :id, :name %>
+            Beers: <% @user.drinks.each do |d| %>
+
+            <%= d.name %>
 
             <% end %>
 
+            <%= f.submit "Add Beer" %>
+
+            <% end %>
 
 <center>
 

@@ -45,7 +45,7 @@ end
   end
 
   def user_params
-    params.require(:user).permit(:name, :gender, :weight, :password, :avatar, :current_bac, :preferred_bac)
+    params.require(:user).permit(:name, :gender, :weight, :password, :avatar, :current_bac, :preferred_bac, :drink_ids => [])
   end
 end
 

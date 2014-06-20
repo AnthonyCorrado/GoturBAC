@@ -1,8 +1,10 @@
 GoturBAC::Application.routes.draw do
 
-  resources :drinks
-  resources :sessions
-  resources :users
+
+  resources :sessions, only: [:new, :destroy]
+  resources :users do
+    resources :drinks
+  end
   resources :venues, only: [:index, :show]
 
   root 'users#index'

@@ -1,6 +1,6 @@
 class DrinksController < ApplicationController
   def index
-    @drinks = Drink.all
+    @drinks = @user.drinks
   end
 
   def show
@@ -11,7 +11,7 @@ class DrinksController < ApplicationController
   end
 
    def create
-    @drink = Drink.new(drink_params)
+    @drink = @user.drink.new(drink_params.merge(user: current_user))
     if @drink.save
       redirect_to drink_path
       flash[:success] = "Drink Added"
@@ -26,12 +26,3 @@ class DrinksController < ApplicationController
     redirect_to new_drink_path
   end
 end
-
-
-def index
-  @users = User.all
-end
-
-  def new
-    @user = User.new
-  end
