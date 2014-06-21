@@ -11,7 +11,7 @@ class DrinksController < ApplicationController
   end
 
    def create
-    @drink = @user.drink.new(drink_params.merge(user: current_user))
+    @drink = @Drink.user_drinks.new(drink_params.merge(user: current_user))
     if @drink.save
       redirect_to drink_path
       flash[:success] = "Drink Added"

@@ -1,1 +1,1 @@
-GoturBAC::Application.config.secret_base_key = ENV['SECRET_KEY']
+GoturBAC::Application.config.secret_key_base = ENV['SECRET_KEY']
