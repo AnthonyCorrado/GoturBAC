@@ -53,21 +53,17 @@ form.bacamount.value = result + " %";
 
         Preferred BAC: <%= @user.preferred_bac %>
 
-            <%=link_to "Edit Profile", edit_user_path(current_user), class: "small button" %>
+        <% @user.drinks.each do |d| %>
 
-            <%= link_to "Log Out", session_path, :method => :delete %>
+        <%= d.alcohol %>
 
-            <%= form_for @user do |f| %>
+        <% end %>
 
-            Beers: <% @user.drinks.each do |d| %>
+        <%= link_to "Add a Drink", new_user_drink_path(current_user), class: "small button" %>
 
-            <%= d.name %>
+            <%= link_to "Edit Profile", edit_user_path(current_user), class: "small button" %>
 
-            <% end %>
-
-            <%= f.submit "Add Beer" %>
-
-            <% end %>
+            <%= link_to "Log Out", session_path, :method => :delete, class: "small button" %>
 
 <center>
 
