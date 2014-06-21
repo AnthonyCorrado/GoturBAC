@@ -1,4 +1,4 @@
 <h1>Drinks#index</h1>
-<%= @user.drinks.each do |d| %>
-<%= d.name %>
-<% end %>
+
+Beers: <%= collection_select :user_drinks, :drink_ids, Drink.all, :id, :name %>
+

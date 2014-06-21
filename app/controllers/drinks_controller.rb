@@ -1,6 +1,6 @@
 class DrinksController < ApplicationController
   def index
-    @drinks = @user.drinks
+    @drinks = Drink.all
   end
 
   def show

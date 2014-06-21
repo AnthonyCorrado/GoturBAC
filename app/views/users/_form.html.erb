@@ -10,8 +10,6 @@ Gender: <%= f.select :gender, [['M'], ['F']] %>
 
 Weight: <%= f.number_field :weight %>
 
-Beers: <%= collection_select :user_drinks, :drink_ids, Drink.all, :id, :name %>
-
 <%= f.submit "Submit", class: "small button" %>
 
 <% end %>
