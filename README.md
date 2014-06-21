@@ -4,7 +4,7 @@
 
 <h3>Heroku Link</h3>
 
-<p>Heroku link coming soon</p>
+<a>http://goturbac.herokuapp.com/</a>
 
 <h3>What does it do?</h3>
 
