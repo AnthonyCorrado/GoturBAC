@@ -8,13 +8,11 @@ class DrinksController < ApplicationController
     @drinks = @user.drinks
   end
 
-  def show
-  end
-
   def new
     @drink = Drink.new
   end
 
+# Seem to be creating both a new drink and a new user drink. Likely need to rework this action
    def create
     @drink = Drink.new(drink_params)
     if @drink.save
@@ -25,6 +23,10 @@ class DrinksController < ApplicationController
       flash[:danger] = "Drink couldn't be added"
       render :new
     end
+  end
+
+
+  def show
   end
 
   def destroy
@@ -38,13 +40,12 @@ protected
     @user = User.find(params[:user_id])
   end
 
-  def drink_params
-    params.require(:user_drinks).permit(:name, :alcohol, :type, :user_id)
-  end
-
   def set_drink
     @drink = Drink.find(params[:id])
   end
 
+  def drink_params
+    params.require(:drink).permit(:name, :alcohol, :type, :user_id)
+  end
 
 end

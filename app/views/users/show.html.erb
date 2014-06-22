@@ -38,7 +38,7 @@ form.bacamount.value = result + " %";
           <% if @user.avatar_file_name %>
 
           <!-- May need to change this back to avatar_url once on heroku -->
-            <%= image_tag @user.avatar.url(:medium) %><br /><br />
+            <%= image_tag @user.avatar_url(:medium) %><br /><br />
           <% end %>
         </div>
 
@@ -53,18 +53,17 @@ form.bacamount.value = result + " %";
 
         Preferred BAC: <%= @user.preferred_bac %>
 
-        <% @user.drinks.each do |d| %>
-
-        <%= d.alcohol %>
-
-        <% end %>
-
         <%= link_to "Add a Drink", new_user_drink_path(current_user), class: "small button" %>
 
             <%= link_to "Edit Profile", edit_user_path(current_user), class: "small button" %>
 
             <%= link_to "Log Out", session_path, :method => :delete, class: "small button" %>
 
+          <ul>
+            <% @user.drinks.each do |d| %>
+                  <li><%= d.user_drink_ids %></li>
+            <% end %>
+          </ul>
 <center>
 
 <form method=post name=bacform>

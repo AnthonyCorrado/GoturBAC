@@ -1,8 +1,9 @@
 
-<!-- Jonnys car app might have good code. Also try searching for adding from collection selects, or maybe try rearranging the collection attributes (just make sure to save this current collection_select somewhere first) -->
+<!-- Drinks being created here aren't taking in drink attributes -->
+
 <%= form_for [@user, @drink] do |f| %>
 
-Beers: <%= collection_select :user_drinks, :drink_ids, Drink.all, :id, :name %>
+Beers: <%= f.collection_select :user_drink_ids, Drink.all, :id, :drink_name %>
 
 <%= f.submit %>
 

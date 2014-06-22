@@ -1,4 +1,7 @@
 <h1>Drinks#index</h1>
-<% @drinks.each do |d| %>
-<%= link_to %>
+
+<!-- drink_names aren't appearing -->
+
+<% @user.drinks.each do |d| %>
+<%= d.drink_name %>
 <% end %>

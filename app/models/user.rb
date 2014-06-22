@@ -7,6 +7,8 @@ has_many :friendships
 has_many :user_drinks
 has_many :drinks, through: :user_drinks
 
+accepts_nested_attributes_for :user_drinks
+
 has_attached_file :avatar, :styles => {:medium => "300x300>", :small => "150x150#", :thumb => "45x45#" }
 
 
@@ -31,6 +33,10 @@ validates_uniqueness_of :name
     else
         false
     end
+  end
+
+  def avatar_url(size)
+    self.avatar.url(size).gsub('s3.amazonaws.com/', 's3-us-west-1.amazonaws.com/')
   end
 
 end

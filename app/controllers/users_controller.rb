@@ -28,8 +28,10 @@ end
 
   def update
     if @user.update(user_params)
+      flash[:success] = "User updated"
       redirect_to user_path
     else
+      flash[:danger] = "Drink couldn't be added to user"
       redirect_to edit_user_path
     end
   end

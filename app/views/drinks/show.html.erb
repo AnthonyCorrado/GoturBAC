@@ -1,6 +1,9 @@
 <h1>Drinks#show</h1>
 <p>Find me in app/views/drinks/show.html.erb</p>
 
-<% @user.drinks.each do |d| %>
-<%= d.name %>
-<% end %>
+
+<!-- Is displaying the correct user id at least -->
+<%= @drink.user_ids %>
+
+<!-- Drink ids aren't getting passed in -->
+<%= @user.drink_ids %>
