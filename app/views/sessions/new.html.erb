@@ -1,14 +1,17 @@
-<h1>Sign In, Drunky!</h1>
+<h1><center>Sign In, Drunky!</center></h1>
 
 <%= form_for :session, :url => sessions_path do |f| %>
 
 <div class= "input_fields">
-    Name: <%= f.text_field :name %>
 
-    Password: <%= f.password_field :password %>
+<h3>Name</h3>
+<%= f.text_field :name %>
+
+<h3>Password</h3>
+<%= f.password_field :password %>
 </div>
 
-<div class= "startpage_button">
+<div class= "input_buttons">
   <%= f.submit "Time to Drink!", class: "large button expand [secondary success alert]" %><br>
 
   <%= link_to "Lemme Sign Up FIrst", new_user_path, class: "large button expand [secondary success alert]" %>

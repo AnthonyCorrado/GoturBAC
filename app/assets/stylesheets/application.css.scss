@@ -17,10 +17,14 @@
  *= require_self
  */
 
+
 h1{
   color: #ffffe6;
-  width: 70%;
-  margin-left: 15%;
+}
+
+h3{
+  color: #ffffe6;
+  text-align: center;
 }
 
  body {
@@ -31,10 +35,13 @@ h1{
   font-family: 'Playfair Display', sans-serif;
  }
 
+ .input_buttons {
+  margin-left: 35%;
+  margin-right: 35%;
+  font-size: 30px;
+}
+
  .input_fields {
   width: 70%;
   margin-left: 15%;
  }
-
-
-

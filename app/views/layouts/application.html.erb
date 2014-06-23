@@ -18,8 +18,8 @@
     <nav class="top-bar" data-topbar>
   <ul class="title-area">
     <li class="name">
-      <center>
-      <h1><a href="#">GoturBAC</a></h1>
+      <% if !current_user %><center><% end %>
+      <h1><a href= "https://www.uber.com/">GoturBAC</a></h1>
     </center>
     </li>
      <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
@@ -32,7 +32,12 @@
     <!-- Right Nav Section -->
     <ul class="right">
       <% if current_user %>
-      <li class="active"><a href="#">Right Button Active</a></li>
+      <li class="has-dropdown">
+        <a href="#">User Options</a>
+        <ul class="dropdown">
+          <li><a href="#"><%= link_to "Edit Profile", edit_user_path(current_user) %></a></li>
+          <li><a href="#"><%= link_to "Log Out", session_path(current_user), :method => :delete %></a></li>
+        </ul>
       <% end %>
     </ul>
 

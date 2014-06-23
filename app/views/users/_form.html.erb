@@ -1,15 +1,30 @@
 <%= form_for @user do |f| %>
 
-Name: <%= f.text_field :name %>
+<div class= "input_fields"
+<h3>Name</h3>
 
-Password: <%= f.password_field :password %>
+ <%= f.text_field :name %>
 
-Avatar: <%= f.file_field :avatar %>
+<h3>Password</h3>
 
-Gender: <%= f.select :gender, [['M'], ['F']] %>
+ <%= f.password_field :password %>
 
-Weight: <%= f.number_field :weight %>
+<h3>Gender</h3>
 
-<%= f.submit "Submit", class: "small button" %>
+ <%= f.select :gender, [['Guy'], ['Lady'], ['I don\'t subscribe to gender roles']] %>
+
+<h3>Weight</h3>
+
+ <%= f.number_field :weight %>
+
+<h3>Avatar</h3>
+
+ <%= f.file_field :avatar %>
+
+</div>
+
+<div class="input_buttons">
+<%= f.submit "Submit", class: "large button expand [secondary success alert]" %>
+</div>
 
 <% end %>
