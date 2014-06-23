@@ -19,8 +19,6 @@ class Venue < ActiveRecord::Base
 
       def self.party(venue)
 
-        venue ||= "general assembly"
-
           auth = { query: { apikey: 'CLIENT_ID', q: venue }}
           venue_url = "https://api.foursquare.com/v2/venues/explore.json"
 

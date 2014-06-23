@@ -39,8 +39,6 @@
 <h3>ToDo</h3>
 
 <ol>
-    <li>Set up AWS for pictures on Heroku</li>
-    <li>Host app on Heroku</li>
     <li>Incorporate Foursquare checkins and sign ons</li>
     <li>Stylize pages</li>
     <li>Optimize pages for mobile design</li>
