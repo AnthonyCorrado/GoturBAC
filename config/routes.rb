@@ -7,7 +7,7 @@ GoturBAC::Application.routes.draw do
   end
   resources :venues, only: [:index, :show]
 
-  root 'users#index'
+  root 'sessions#new'
 
 
 

@@ -13,10 +13,10 @@ class DrinksController < ApplicationController
   end
 
 # Seem to be creating both a new drink and a new user drink. Likely need to rework this action
+# Also isn't accepting drink attributes
    def create
-    @drink = Drink.new(drink_params)
+    @drink = current_user.drinks.create(drink_params)
     if @drink.save
-      @user.drinks << @drink
       redirect_to user_path(current_user)
       flash[:success] = "Drink Added"
     else

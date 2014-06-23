@@ -4,14 +4,43 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title><%= content_for?(:title) ? yield(:title) : "foundation-rails" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "GoturBAC" %></title>
 
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "vendor/modernizr" %>
     <%= csrf_meta_tags %>
+    <link href='http://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
   </head>
 
   <body>
+
+<div class="contain-to-grid">
+    <nav class="top-bar" data-topbar>
+  <ul class="title-area">
+    <li class="name">
+      <center>
+      <h1><a href="#">GoturBAC</a></h1>
+    </center>
+    </li>
+     <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+     <% if current_user %>
+    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+    <% end %>
+  </ul>
+
+  <section class="top-bar-section">
+    <!-- Right Nav Section -->
+    <ul class="right">
+      <% if current_user %>
+      <li class="active"><a href="#">Right Button Active</a></li>
+      <% end %>
+    </ul>
+
+    <!-- Left Nav Section -->
+
+  </section>
+</nav>
+</div>
 
      <% flash.each do |key, value| %>
         <div class="alert alert-<%= key %>"><%= value %></div>
