@@ -1,10 +1,14 @@
 
 <!-- Drinks being created here aren't taking in drink attributes -->
 
-<%= form_for [@user, @drink] do |f| %>
+<%= form_for [current_user, @drink] do |f| %>
 
+<div class="input_fields">
 Beers: <%= f.collection_select :user_drink_ids, Drink.all, :id, :drink_name %>
+</div>
 
-<%= f.submit %>
+<div class="input_buttons">
+<%= f.submit "I'm Drankin'!", class: "large button expand [secondary success alert]" %>
+</div>
 
 <% end %>

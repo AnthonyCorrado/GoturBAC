@@ -1,7 +1,5 @@
 <h1>Drinks#index</h1>
 
-<!-- drink_names aren't appearing -->
-
-<% @user.drinks.each do |d| %>
-<%= d.drink_name %>
+<% current_user.user_drinks.each do |d| %>
+<%= d.drink_id %>
 <% end %>

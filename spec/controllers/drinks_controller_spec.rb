@@ -41,7 +41,7 @@ describe "POST create" do
     describe "successful create" do
 
         specify {expect do
-          post :create, drink: valid_attributes
+          post :create, drink: valid_attributes, :user_id => 1
         end.to change(Drink, :count).by(1)}
 
 
@@ -82,7 +82,7 @@ describe "POST create" do
       end
 
         before do
-          put :update, id: @drink.id, drink: update_attributes
+          put :update, id: @drink.id, drink: update_attributes, :user_id => 1
         end
 
             specify {expect(@drink.reload.drink_name).to eq("PBR")}
@@ -101,11 +101,11 @@ describe "POST create" do
     end
 
         specify {expect do
-          delete :destroy, id: @drink.id
+          delete :destroy, id: @drink.id, :user_id => 1
         end.to change(Drink, :count).by(-1)}
 
       it "should redirect to the index" do
-        delete :destroy, id: @drink.id
+        delete :destroy, id: @drink.id, :user_id => 1
         expect(response).to redirect_to user_path
       end
   end

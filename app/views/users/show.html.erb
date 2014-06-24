@@ -4,59 +4,76 @@
 
 <!-- Begin
 function solveBAC(form) {
+
+  // Have to set drinktime before function calculates
+<% @drinktime =  (Time.now - $starttime)/ 3600 %>
 var alcohol = eval(form.ounces.value);
 var percent = eval(form.percent.value);
-var weight = eval(<%= @user.weight.to_json %>);
-var hours = eval(form.hours.value);
+var weight = eval(<%= current_user.weight.to_json %>);
+var hours = eval(<%= @drinktime.to_json %>);
 
 var result = (alcohol * percent * 0.075 / weight) - (hours * 0.015);
 if (result < 0) {
-message = "There is a negligible amount of alcohol in your system.  You are not legally intoxicated.";
-result = "-- neglible amount --";
+message = "Oh boy. Sobriety.";
+result = "0";
 }
 else {
+if (result <= 0.03)
+message = "Drink up, you dumb sober baby.";
+if (0.03 <= result)
+message = "Life feels a little less soul crushing, better keep going.";
+if (0.06 <= result)
+message = "Almost drunk! Keep reaching for that ethanol rainbow!";
+if (0.08 <= result)
+message = "You are technically drunk, and that makes you sexy.";
+if (0.12 <= result)
+message = "You know what sounds fun right now? Sprinting with your eyes closed.";
+if ( 0.18 <= result)
+message = "Puke! Puke! Puke! Puke! Puke! Puke! Puke! Puke! Puke!";
+if (result >= 0.25)
+message = "Ya done good kiddo, but now it's time to stop before you go into a coma.";
 if (result == "NaN")
 mesage = "Please try again.";
-if (result > 0.08)
-message = "In MOST and possibly ALL states you would be considered intoxicated and arrested for DUI.";
-if (result < 0.08)
-message = "You are not legally intoxicated";
 }
 form.message.value = message;
 form.bacamount.value = result + " %";
 }
 //  End -->
+
 </script>
 </HEAD>
 
 <BODY>
 
-
-<h1 class= "text-center"><%= @user.name %>'s Current Predicament</h1>
+<h1 class= "text-center"><%= current_user.name %>'s Current Predicament</h1>
 
 <div id="profile-photo">
-          <% if @user.avatar_file_name %>
+          <% if current_user.avatar_file_name %>
 
-            <center><%= image_tag @user.avatar_url(:small) %></center><br /><br />
+            <center><%= image_tag current_user.avatar_url(:small) %></center><br /><br />
           <% end %>
         </div>
 
 <!-- Work in progress until I can set up all variable and make sure erb works for equations -->
         <h1 class="text-center">UrBAC:<br>
-          <%= @user.current_bac %></h1>
+          <%= current_user.current_bac %></h1>
 
         <h3>Preferred BAC:<br>
-          <%= @user.preferred_bac %></h3>
+          <%= current_user.preferred_bac %></h3>
+
+          <h3>You've been drinking for <%= number_with_precision(@drinktime, :precision => 2) %> hours!</h3>
 
 <div class= "input_buttons">
         <%= link_to "Add a Drink", new_user_drink_path(current_user), class: "small button [secondary success alert]" %>
           </div>
 
           <ul class= "text-center">
-            <% @user.drinks.each do |d| %>
-                  <li><%= d.user_drink_ids %></li>
+            <% current_user.user_drinks.each do |d| %>
+                  <li>User_drink id: <%= d.id %> User id: <%= d.user_id %> Drink id: <%= d.drink_id %> Drink name: <%#= d.drink_name %></li>
             <% end %>
           </ul>
+
+
 <center>
 
 <form method=post name=bacform>
@@ -75,14 +92,14 @@ Percent Alcohol
 <input type=text name=percent size=6>
 </td>
 </tr>
-<tr>
+<!-- <tr>
 <td align=center>
 Hours Consuming Drink
 </td>
 <td align=center>
 <input type=text name=hours size=6>
 </td>
-</tr>
+</tr> -->
 <tr>
 <td colspan=4 align=center>
 <input type=button name=bac value="Calculate Your BAC %" onClick="javascript:solveBAC(this.form)">
@@ -107,5 +124,4 @@ BAC Analysis
 </table>
 </form>
 </center>
-
 </body>
