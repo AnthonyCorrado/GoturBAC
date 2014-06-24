@@ -1,30 +1,77 @@
 class Venue < ActiveRecord::Base
 
-  has_many :users
+require 'foursquare2'
+require 'pry'
+require 'pry-nav'
+require 'colorize'
 
-    geocoded_by :address # do |obj, results|
-  #   if geo = results.first
-  #     obj.latitude = geo.latitude
-  #     obj.longitude = geo.longitude
-  #     obj.city = geo.city
-  #     obj.zip = geo.zip
-  #     obj.street_address = geo.street_address
-  #     obj.address = geo.address
-  #   else
-  #     obj.address = nil
-  #   end
-  # end
+client = Foursquare2::Client.new(:client_id => 'CLIENT_ID', :client_secret => 'CLIENT_SECRET', :api_version => '20131016'))
 
-    before_validation :geocode #, if: ->(obj){ obj.address.present? and obj.address.changed? }
 
-      def self.party(venue)
 
-          auth = { query: { apikey: 'CLIENT_ID', q: venue }}
-          venue_url = "https://api.foursquare.com/v2/venues/explore.json"
 
-          response = HTTParty.get venue_url, auth
+#API CALLS -------------------------------
+venues_data = client.search_venues(:ll => '37.762414, -122.419108', :query => 'gym')
+venues = venues_data.groups[0].items
 
-          response.parsed_response["venues"]
-      end
+# this is sorting by _stats.checkinsCount
+venue_details = []
+
+venues.each do |v|
+  the_venue = client.venue(v.id)
+  venue_details << the_venue
+
+  #Adding all tips to our venues
+  v.the_tips = the_venue.tips.groups[0].items
+end
+#------------------------------------------------------------
+
+
+#MAGIC SEARCH ENGINE ----------------------------------------
+the_request = 'pool'
+
+results = []
+
+venues.each do |v|
+
+  v.the_tips.each do |tip|
+
+    if tip.text.match(/(.*)#{the_request}(.*)/)
+
+      the_result = Hashie::Mash.new
+      the_result.venue = v
+      the_result.tip = tip
+
+      results << the_result
+
+    end
+
+  end
+
+end
+
+
+# RESULTS OUTPUT -------------------------------------------
+
+
+
+# SORT THE RESULTS
+results.sort! do |b, a|
+  a.venue.stats.checkinsCount <=> b.venue.stats.checkinsCount
+end
+
+
+
+
+# ----------------------------------------------------------
+
+results.each do |r|
+
+  puts "#{r.venue.name} #{r.venue.stats.checkinsCount}".blue
+  puts "#{r.tip.text}".green
+
+end
+
+
 
 end

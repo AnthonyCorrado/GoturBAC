@@ -6,13 +6,13 @@
 function solveBAC(form) {
 
   // Have to set drinktime before function calculates
-<% @drinktime =  (Time.now - $starttime)/ 3600 %>
+<% @drinktime =  (Time.now - $starttime)/ 60 %>
 var alcohol = eval(form.ounces.value);
 var percent = eval(form.percent.value);
 var weight = eval(<%= current_user.weight.to_json %>);
 var hours = eval(<%= @drinktime.to_json %>);
 
-var result = (alcohol * percent * 0.075 / weight) - (hours * 0.015);
+var result = (alcohol * percent * 0.075 / weight) - (hours * 0.00025);
 if (result < 0) {
 message = "Oh boy. Sobriety.";
 result = "0";
@@ -61,12 +61,15 @@ form.bacamount.value = result + " %";
         <h3>Preferred BAC:<br>
           <%= current_user.preferred_bac %></h3>
 
-          <h3>You've been drinking for <%= number_with_precision(@drinktime, :precision => 2) %> hours!</h3>
+          <h3>You've been drinking for <%= number_with_precision(@drinktime, :precision => 2) %> minutes!</h3>
 
 <div class= "input_buttons">
-        <%= link_to "Add a Drink", new_user_drink_path(current_user), class: "small button [secondary success alert]" %>
+        <%= link_to "Add a Drink", new_user_drink_path(current_user), class: "large button radius round [secondary success alert]" %>
           </div>
 
+          <%= link_to "Done Drinking?", user_drinks_path(current_user), method: :delete %>
+
+<%= current_user.user_drinks.all %>
           <ul class= "text-center">
             <% current_user.user_drinks.each do |d| %>
                   <li>User_drink id: <%= d.id %> User id: <%= d.user_id %> Drink id: <%= d.drink_id %> Drink name: <%#= d.drink_name %></li>

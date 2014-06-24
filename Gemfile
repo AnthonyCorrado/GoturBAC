@@ -56,6 +56,10 @@ gem 'aws-sdk'
 
  gem 'foursquare2', '~> 2.0.0'
 
+gem 'pry'
+gem 'pry-remote'
+gem 'pry-nav'
+
 # Use unicorn as the app server
 # gem 'unicorn'
 

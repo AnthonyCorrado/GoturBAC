@@ -30,8 +30,7 @@ class DrinksController < ApplicationController
   end
 
   def destroy
-    @drink.destroy
-    redirect_to new_drink_path
+    @users.all.destroy
   end
 
 
