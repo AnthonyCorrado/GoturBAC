@@ -9,14 +9,15 @@ class DrinksController < ApplicationController
   end
 
   def new
-    @drink = Drink.new
+    @user_drink = UserDrink.new
   end
 
 # Seem to be creating both a new drink and a new user drink. Likely need to rework this action
 # Also isn't accepting drink attributes
    def create
-    @drink = current_user.user_drinks.create(drink_params)
-    if @drink.save
+    # Drink.first.user_drinks.create(user: User.first)
+    user_drink = current_user.user_drinks.new(user_id: current_user.id, drink_id: user_drink_params[:drink_id])
+    if user_drink.save
       redirect_to user_path(current_user)
       flash[:success] = "Drink Added"
     else
@@ -43,8 +44,9 @@ protected
     @drink = Drink.find(params[:id])
   end
 
-  def drink_params
-    params.require(:drink).permit(:name, :alcohol, :type, :user_id)
+  def user_drink_params
+    # :drink_name, :alcohol, :type, :user_id
+    params.require(:user_drink).permit(:drink_id)
   end
 
 end

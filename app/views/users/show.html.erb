@@ -72,7 +72,7 @@ form.bacamount.value = result + " %";
 <%= current_user.user_drinks.all %>
           <ul class= "text-center">
             <% current_user.user_drinks.each do |d| %>
-                  <li>User_drink id: <%= d.id %> User id: <%= d.user_id %> Drink id: <%= d.drink_id %> Drink name: <%#= d.drink_name %></li>
+                  <li>User_drink id: <%= d.id %> User id: <%= d.user_id %> Drink id: <%= d.drink_id %> Drink name: <%= d.drink.alcohol %></li>
             <% end %>
           </ul>
 

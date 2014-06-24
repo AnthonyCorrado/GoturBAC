@@ -1,10 +1,10 @@
 
 <!-- Drinks being created here aren't taking in drink attributes -->
 
-<%= form_for [current_user, @drink] do |f| %>
+<%= form_for @user_drink do |f| %>
 
 <div class="input_fields">
-Beers: <%= f.collection_select :user_drink_ids, Drink.all, :id, :drink_name %>
+  Beers: <%= f.collection_select :drink_id, Drink.all, :id, :drink_name %>
 </div>
 
 <div class="input_buttons">
