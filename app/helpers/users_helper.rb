@@ -12,7 +12,7 @@ module UsersHelper
         elsif (current_user.current_bac >= 0.06)
             bac_message = "Almost drunk! Reach for that ethanol rainbow!"
         elsif (current_user.current_bac >= 0.03)
-            bac_message = "Slightly buzzed. Keep going until life stops hurting!"
+            bac_message = "Slightly buzzed. Keep going til the voices stop!"
         elsif (0.03  >= current_user.current_bac)
             bac_message = "Drink up, you dumb sober baby."
         else (current_user.current_bac == 0)
