@@ -17,11 +17,14 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    @user.user_drinks = nil
     session.delete(:remember_token)
     # I really want to figure out how to make the below message personalized.
     # flash.now[:goodbye] = "Goodbye. Come back soon."
     redirect_to root_path
   end
+
+
 
 
 end

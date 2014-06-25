@@ -31,7 +31,7 @@ class DrinksController < ApplicationController
   end
 
   def destroy
-    @users.all.destroy
+    UserDrink.destroy_all
   end
 
 

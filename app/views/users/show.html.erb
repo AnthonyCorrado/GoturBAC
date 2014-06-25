@@ -45,6 +45,51 @@ form.bacamount.value = result + " %";
 
 <BODY>
 
+
+
+  <% @drinktime =  (Time.now - $starttime)/ 60 %>
+
+  <% if @drinktime > 720 %>
+
+  <% current_user.user_drinks.clear %>
+
+  <% end %>
+
+<% @total_alcohol = 0 %>
+
+<% current_user.user_drinks.each do |d| %>
+
+<% @total_alcohol = @total_alcohol + d.drink.alcohol %>
+
+<% end %>
+
+<% current_user.current_bac = (@total_alcohol * 7.5 / current_user.weight) - (@drinktime * 0.00025) %>
+
+<% if current_user.current_bac < 0 %>
+
+<% current_user.current_bac = 0 %>
+
+<% end %>
+
+<% if 0.25 <= current_user.current_bac %>
+<% @message = "Ya done good kiddo, but now it's time to stop before you go into a coma." %>
+<% elsif  current_user.current_bac >= 0.18 %>
+<% @message = "Puke! Puke! Puke! Puke! Puke! Puke! Puke! Puke! Puke!" %>
+<% elsif current_user.current_bac >= 0.12 %>
+<% @message = "You know what sounds fun right now? Sprinting with your eyes closed." %>
+<% elsif current_user.current_bac >= 0.08 %>
+<% @message = "You are technically drunk, and that makes you sexy." %>
+<% elsif current_user.current_bac >= 0.06 %>
+<% @message = "Almost drunk! Reach for that ethanol rainbow!" %>
+<% elsif current_user.current_bac >= 0.03 %>
+<% @message = "Slightly buzzed. Keep going until life stops hurting!" %>
+<% elsif 0.03  >= current_user.current_bac %>
+<% @message = "Drink up, you dumb sober baby." %>
+<% else current_user.current_bac <= 0 %>
+<% @message = "Oh boy. Sobriety." %>
+<% end %>
+
+
 <h1 class= "text-center"><%= current_user.name %>'s Current Predicament</h1>
 
 <div id="profile-photo">
@@ -56,75 +101,28 @@ form.bacamount.value = result + " %";
 
 <!-- Work in progress until I can set up all variable and make sure erb works for equations -->
         <h1 class="text-center">UrBAC:<br>
-          <%= current_user.current_bac %></h1>
+          <%= number_with_precision(current_user.current_bac, :precision => 3) + "%" %></h1>
+
+          <h3><%= @message %><h3>
 
         <h3>Preferred BAC:<br>
           <%= current_user.preferred_bac %></h3>
 
+<% if @drinktime < 60 %>
           <h3>You've been drinking for <%= number_with_precision(@drinktime, :precision => 2) %> minutes!</h3>
+          <% else %>
+          <h3>You've been drinking for <%= number_with_precision((@drinktime / 60), :precision => 2) %> hours!</h3>
+          <% end %>
+
 
 <div class= "input_buttons">
         <%= link_to "Add a Drink", new_user_drink_path(current_user), class: "large button radius round [secondary success alert]" %>
           </div>
 
-          <%= link_to "Done Drinking?", user_drinks_path(current_user), method: :delete %>
 
-<%= current_user.user_drinks.all %>
-          <ul class= "text-center">
-            <% current_user.user_drinks.each do |d| %>
-                  <li>User_drink id: <%= d.id %> User id: <%= d.user_id %> Drink id: <%= d.drink_id %> Drink name: <%= d.drink.alcohol %></li>
-            <% end %>
-          </ul>
-
-
-<center>
-
-<form method=post name=bacform>
-<table border=4>
-<tr>
-<td align=center>
-Fluid Ounces Consumed
-</td>
-<td align=center>
-<input type=text name=ounces size=6>
-</td>
-<td align=center>
-Percent Alcohol
-</td>
-<td align=center>
-<input type=text name=percent size=6>
-</td>
-</tr>
-<!-- <tr>
-<td align=center>
-Hours Consuming Drink
-</td>
-<td align=center>
-<input type=text name=hours size=6>
-</td>
-</tr> -->
-<tr>
-<td colspan=4 align=center>
-<input type=button name=bac value="Calculate Your BAC %" onClick="javascript:solveBAC(this.form)">
-</td>
-</tr>
-<tr>
-<td align=center>
-BAC Percentage
-</td>
-<td colspan=3 align=center>
-<input type=text name=bacamount size=21>
-</td>
-</tr>
-<tr>
-<td align=center>
-BAC Analysis
-</td>
-<td colspan=3 align=center>
-<textarea name=message rows=3 cols=35 wrap=virtual></textarea>
-</td>
-</tr>
-</table>
-</form>
-</center>
-</body>
+          <div class= "input_buttons">
+      <%= form_for current_user do |t| %>
+     <%= t.hidden_field :preferred_bac, :value=>0.05 %>
+     <%= t.submit "I feel great!", class: "large button expand [secondary success alert]" %>
+   <% end %>
+ </div>
