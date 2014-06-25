@@ -105,8 +105,10 @@ form.bacamount.value = result + " %";
 
           <h3><%= @message %><h3>
 
+<% if current_user.preferred_bac != nil %>
         <h3>Preferred BAC:<br>
           <%= number_with_precision(current_user.preferred_bac, :precision => 3) + "%" %></h3>
+          <% end %>
 
 <% if @drinktime < 60 %>
           <h3>You've been drinking for <%= number_with_precision(@drinktime, :precision => 2) %> minutes!</h3>
