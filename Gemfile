@@ -44,7 +44,7 @@ group :test do
   gem 'shoulda-matchers'
 end
 
-
+gem 'rails_12factor'
 
 gem 'figaro'
 
