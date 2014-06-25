@@ -59,6 +59,7 @@ gem 'aws-sdk'
 gem 'pry'
 gem 'pry-remote'
 gem 'pry-nav'
+gem 'colorize'
 
 # Use unicorn as the app server
 # gem 'unicorn'

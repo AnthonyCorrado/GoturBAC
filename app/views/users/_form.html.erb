@@ -1,3 +1,4 @@
+
 <%= form_for @user do |f| %>
 
 <div class= "input_fields"
@@ -23,16 +24,19 @@
 
 </div>
 
-<h3>Set Current BAC to your Preferred BAC<h3>
+
 
 <div class="input_buttons">
+<%= f.submit "Submit", class: "large button expand radius round [secondary success alert]" %>
+</div>
 
+<h3>Set Current BAC to your Preferred BAC<h3>
+  <div class="input_buttons">
       <%= form_for @user do |t| %>
      <%= t.hidden_field :preferred_bac, value: $current_bac %>
-     <%= t.submit "I feel awesome!", class: "large button expand [secondary success alert]" %>
+     <%= t.submit "Happy Place", class: "large button expand radius round [secondary success alert]" %>
    <% end %>
+ </div>
 
-<%= f.submit "Submit", class: "large button expand [secondary success alert]" %>
-</div>
 
 <% end %>

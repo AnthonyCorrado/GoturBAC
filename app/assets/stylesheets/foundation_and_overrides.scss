@@ -347,7 +347,7 @@
 // $button-font-tny: rem-calc(11);
 // $button-font-sml: rem-calc(13);
 // $button-font-med: rem-calc(16);
- $button-font-lrg: rem-calc(18);
+ $button-font-lrg: rem-calc(16);
 // $button-font-weight: $font-weight-normal;
 // $button-font-align: center;
 
@@ -361,7 +361,7 @@
 // $button-border-color: scale-color($bg, $lightness: $button-function-factor);
 
 // We use this to set the default radius used throughout the core.
-// $button-radius: 10%;
+ $button-radius: 100%;
  $button-round: 100%;
 
 // We use this to set default opacity for disabled buttons.

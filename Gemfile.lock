@@ -46,6 +46,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.7.0)
+    colorize (0.7.3)
     diff-lcs (1.2.5)
     erubis (2.7.0)
     execjs (2.2.0)
@@ -187,6 +188,7 @@ DEPENDENCIES
   aws-sdk
   bcrypt (~> 3.1.7)
   coffee-rails (~> 4.0.0)
+  colorize
   figaro
   foundation-rails
   foursquare2 (~> 2.0.0)

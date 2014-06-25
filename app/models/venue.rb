@@ -1,17 +1,26 @@
-# class Venue < ActiveRecord::Base
+class Venue < ActiveRecord::Base
 
-# require 'foursquare2'
-# require 'pry'
-# require 'pry-nav'
-# require 'colorize'
-
-# client = Foursquare2::Client.new(:client_id => 'CLIENT_ID', :client_secret => 'CLIENT_SECRET', :api_version => '20131016'))
+require 'foursquare2'
+require 'pry'
+require 'pry-nav'
+require 'colorize'
 
 
+client = Foursquare2::Client.new(:client_id => 'RKEGHDGKYNNB1KUHH5SKKWARFJLXIMQOVAUIMP5L5QIBHUC4', :client_secret => 'IQ0YBRKS05G203URBR51K3J5N0LAK5OOH3VAJDY1N5JB2TJS', :api_version => '20131016')
+
+ def self.party(venue)
+
+    auth = { query: { :client_id => 'RKEGHDGKYNNB1KUHH5SKKWARFJLXIMQOVAUIMP5L5QIBHUC4', :client_secret => 'IQ0YBRKS05G203URBR51K3J5N0LAK5OOH3VAJDY1N5JB2TJS', :api_version => '20131016', q: venue }}
+    search_url = "https://api.foursquare.com/v2/venues/search"
+
+    response = HTTParty.get search_url, auth
+
+    response.parsed_response["venue"]
+ end
 
 
 # #API CALLS -------------------------------
-# venues_data = client.search_venues(:ll => '37.762414, -122.419108', :query => 'gym')
+# venues_data = client.search_venues(:ll => '34.012836, -118.495338', :query => 'gym')
 # venues = venues_data.groups[0].items
 
 # # this is sorting by _stats.checkinsCount
@@ -74,4 +83,4 @@
 
 
 
-# end
+ end

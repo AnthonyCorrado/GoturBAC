@@ -1,109 +1,21 @@
-<HEAD>
 
-<SCRIPT LANGUAGE="JavaScript">
-
-<!-- Begin
-function solveBAC(form) {
-
-  // Have to set drinktime before function calculates
-<% @drinktime =  (Time.now - $starttime)/ 60 %>
-var alcohol = eval(form.ounces.value);
-var percent = eval(form.percent.value);
-var weight = eval(<%= current_user.weight.to_json %>);
-var hours = eval(<%= @drinktime.to_json %>);
-
-var result = (alcohol * percent * 0.075 / weight) - (hours * 0.00025);
-if (result < 0) {
-message = "Oh boy. Sobriety.";
-result = "0";
-}
-else {
-if (result <= 0.03)
-message = "Drink up, you dumb sober baby.";
-if (0.03 <= result)
-message = "Life feels a little less soul crushing, better keep going.";
-if (0.06 <= result)
-message = "Almost drunk! Keep reaching for that ethanol rainbow!";
-if (0.08 <= result)
-message = "You are technically drunk, and that makes you sexy.";
-if (0.12 <= result)
-message = "You know what sounds fun right now? Sprinting with your eyes closed.";
-if ( 0.18 <= result)
-message = "Puke! Puke! Puke! Puke! Puke! Puke! Puke! Puke! Puke!";
-if (result >= 0.25)
-message = "Ya done good kiddo, but now it's time to stop before you go into a coma.";
-if (result == "NaN")
-mesage = "Please try again.";
-}
-form.message.value = message;
-form.bacamount.value = result + " %";
-}
-//  End -->
-
-</script>
-</HEAD>
-
-<BODY>
-
-
-
-  <% @drinktime =  (Time.now - $starttime)/ 60 %>
-
-  <% if @drinktime > 720 %>
-
-  <% current_user.user_drinks.clear %>
-
-  <% end %>
-
-<% @total_alcohol = 0 %>
-
-<% current_user.user_drinks.each do |d| %>
-
-<% @total_alcohol = @total_alcohol + d.drink.alcohol %>
-
-<% end %>
-
-<% current_user.current_bac = (@total_alcohol * 7.5 / current_user.weight) - (@drinktime * 0.00025) %>
-
-<% if current_user.current_bac < 0 %>
-
-<% current_user.current_bac = 0 %>
-
-<% end %>
-
-<% if 0.25 <= current_user.current_bac %>
-<% @message = "Ya done good kiddo, but now it's time to stop before you go into a coma." %>
-<% elsif  current_user.current_bac >= 0.18 %>
-<% @message = "Puke! Puke! Puke! Puke! Puke! Puke! Puke! Puke! Puke!" %>
-<% elsif current_user.current_bac >= 0.12 %>
-<% @message = "You know what sounds fun right now? Sprinting with your eyes closed." %>
-<% elsif current_user.current_bac >= 0.08 %>
-<% @message = "You are technically drunk, and that makes you sexy." %>
-<% elsif current_user.current_bac >= 0.06 %>
-<% @message = "Almost drunk! Reach for that ethanol rainbow!" %>
-<% elsif current_user.current_bac >= 0.03 %>
-<% @message = "Slightly buzzed. Keep going until life stops hurting!" %>
-<% elsif 0.03  >= current_user.current_bac %>
-<% @message = "Drink up, you dumb sober baby." %>
-<% else current_user.current_bac <= 0 %>
-<% @message = "Oh boy. Sobriety." %>
-<% end %>
-
+<% bac_calculate %>
 
 <h1 class= "text-center"><%= current_user.name %>'s Current Predicament</h1>
 
-<div id="profile-photo">
           <% if current_user.avatar_file_name %>
 
+          <div id="profile-photo">
             <center><%= image_tag current_user.avatar_url(:small) %></center><br /><br />
+            </div>
           <% end %>
-        </div>
+
 
 
         <h1 class="text-center">UrBAC:<br>
           <%= number_with_precision(current_user.current_bac, :precision => 3) + "%" %></h1>
 
-          <h3><%= @message %><h3>
+          <h3><%= bac_message %><h3>
 
 <% if current_user.preferred_bac != nil %>
         <h3>Preferred BAC:<br>
