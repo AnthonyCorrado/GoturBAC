@@ -1,6 +1,5 @@
 GoturBAC::Application.routes.draw do
 
-resources :lawyers
   resources :sessions, only: [:new, :create, :destroy]
   resources :users do
     resources :drinks

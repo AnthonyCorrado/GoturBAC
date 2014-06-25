@@ -23,7 +23,15 @@
 
 </div>
 
+<h3>Set Current BAC to your Preferred BAC<h3>
+
 <div class="input_buttons">
+
+      <%= form_for @user do |t| %>
+     <%= t.hidden_field :preferred_bac, value: $current_bac %>
+     <%= t.submit "I feel awesome!", class: "large button expand [secondary success alert]" %>
+   <% end %>
+
 <%= f.submit "Submit", class: "large button expand [secondary success alert]" %>
 </div>
 

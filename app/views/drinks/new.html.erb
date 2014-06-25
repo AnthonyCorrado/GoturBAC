@@ -1,4 +1,14 @@
 <h1>Drinks#new</h1>
 <p>Find me in app/views/drinks/new.html.erb</p>
 
-<%= render partial: 'form' %>
+<%= form_for @user_drink do |f| %>
+
+<div class="input_fields">
+  Beers: <%= f.collection_select :drink_id, Drink.all, :id, :drink_name %>
+</div>
+
+<div class="input_buttons">
+<%= f.submit "I'm Drankin'!", class: "large button expand radius round [secondary success alert]" %>
+</div>
+
+<% end %>

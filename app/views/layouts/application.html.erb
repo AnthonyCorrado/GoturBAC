@@ -35,6 +35,7 @@
       <li class="has-dropdown">
         <a href="#">User Options</a>
         <ul class="dropdown">
+          <li><a href="#"><%= link_to "Profile Page", user_path(current_user) %></a></li>
           <li><a href="#"><%= link_to "Edit Profile", edit_user_path(current_user) %></a></li>
           <li><a href="#"><%= link_to "Log Out", session_path(current_user), :method => :delete %></a></li>
         </ul>

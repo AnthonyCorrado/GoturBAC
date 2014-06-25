@@ -99,14 +99,14 @@ form.bacamount.value = result + " %";
           <% end %>
         </div>
 
-<!-- Work in progress until I can set up all variable and make sure erb works for equations -->
+
         <h1 class="text-center">UrBAC:<br>
           <%= number_with_precision(current_user.current_bac, :precision => 3) + "%" %></h1>
 
           <h3><%= @message %><h3>
 
         <h3>Preferred BAC:<br>
-          <%= current_user.preferred_bac %></h3>
+          <%= number_with_precision(current_user.preferred_bac, :precision => 3) + "%" %></h3>
 
 <% if @drinktime < 60 %>
           <h3>You've been drinking for <%= number_with_precision(@drinktime, :precision => 2) %> minutes!</h3>
@@ -118,11 +118,4 @@ form.bacamount.value = result + " %";
 <div class= "input_buttons">
         <%= link_to "Add a Drink", new_user_drink_path(current_user), class: "large button radius round [secondary success alert]" %>
           </div>
-
-
-          <div class= "input_buttons">
-      <%= form_for current_user do |t| %>
-     <%= t.hidden_field :preferred_bac, :value=>0.05 %>
-     <%= t.submit "I feel great!", class: "large button expand [secondary success alert]" %>
-   <% end %>
- </div>
+<% $current_bac = current_user.current_bac %>
