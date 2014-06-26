@@ -1,7 +1,5 @@
 <!-- Method called in from helper file -->
 
-
-
 <% bac_calculate %>
 
 <h1 class= "text-center"><%= current_user.name %>'s Current Predicament</h1>
@@ -25,7 +23,7 @@
         <h3>Preferred BAC:<br>
             <%= number_with_precision(current_user.preferred_bac, :precision => 3) + "%" %></h3>
     <% end %>
-<%= current_user.start_time %>
+
       <!-- Contextually changes from minutes to hours based on time spent drinking -->
     <% if current_user.drink_time < 60 %>
       <h3>You've been drinking for <%= number_with_precision(current_user.drink_time, :precision => 2) %> minutes!</h3>
