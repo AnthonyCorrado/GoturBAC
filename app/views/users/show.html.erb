@@ -36,5 +36,5 @@
         <%= link_to "Add a Drink", new_user_drink_path(current_user), class: "large button radius round [secondary success alert]" %>
     </div>
 
-      <!-- Set a global variable to be used when user sets preferred BAC in edit page -->
-  <% @current_bac = current_user.current_bac %>
+      <!-- Set a class variable to be used when user sets preferred BAC in edit page -->
+  <% @@current_bac = current_user.current_bac %>

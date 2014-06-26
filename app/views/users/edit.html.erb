@@ -37,11 +37,11 @@
   </div>
 
 
-<!-- Button that sets the users persistent preferred BAC to whatever their current BAC happens to be. Current BAC is sent in via a global variable -->
+<!-- Button that sets the users persistent preferred BAC to whatever their current BAC happens to be. Current BAC is sent in via a class variable -->
   <h3>Set Current BAC to your Preferred BAC<h3>
       <div class="input_buttons">
           <%= form_for current_user do |t| %>
-          <%= t.hidden_field :preferred_bac, value: $current_bac %>
+          <%= t.hidden_field :preferred_bac, :value => @@current_bac %>
           <%= t.submit "Happy Place", class: "large button expand radius round [secondary success alert]" %>
           <% end %>
       </div>
