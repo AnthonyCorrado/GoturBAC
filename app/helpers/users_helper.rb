@@ -30,10 +30,10 @@ def bac_calculate
   # divided by 60 so units are in minutes
   @drinktime =  (Time.now - $starttime)/ 60
 
-# user_drinks are reset if drinktime hits 12 hours. Easy if not elegant fix until I can get drinks to
+# user_drinks are reset if drinktime is under 20ish seconds. Easy if not elegant fix until I can get drinks to
 # clear on session destroy. Beginning to think drinks should have been tied to sessions rather
 # than users (DRINKING SESSIONS!!!!)
-if @drinktime > 720
+if @drinktime < 0.35
 
   current_user.user_drinks.clear
 
