@@ -1,21 +1,23 @@
 <h1><center>Sign In, Drunky!</center></h1>
 
-<%= form_for :session, :url => sessions_path do |f| %>
+    <%= form_for :session, :url => sessions_path do |f| %>
 
-<div class= "input_fields">
+    <div class= "input_fields">
 
 <h3>Name</h3>
-<%= f.text_field :name %>
+        <%= f.text_field :name %>
 
 <h3>Password</h3>
-<%= f.password_field :password %>
-</div>
+        <%= f.password_field :password %>
 
-<div class= "input_buttons">
-  <%= f.submit "Get Drunk!", class: "large button expand radius round [secondary success alert]" %><br>
+    </div>
 
-  <%= link_to "Sign Up For Madness", new_user_path, class: "large button expand radius round [secondary success alert]" %>
-</div>
+    <div class= "input_buttons">
+        <%= f.submit "Get Drunk!", class: "large button expand radius round [secondary success alert]" %><br>
 
+        <%= link_to "Sign Up For Madness", new_user_path, class: "large button expand radius round [secondary success alert]" %>
+    </div>
+
+<!-- starttime is a global variable created when the session page loads, used in the BAC calc -->
 <% $starttime = Time.now %>
 <% end %>

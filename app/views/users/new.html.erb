@@ -1,4 +1,40 @@
 
 <h1><center>Sign Up For The Biggest Mistake Of Your Life</center></h1>
 
-  <%= render partial: 'form' %>
+<!-- Had to render different pages instead of using a partial, since current_bac variable wasn't carrying over and kept affecting other users -->
+  <% @user.current_bac %>
+
+<%= form_for @user do |f| %>
+
+<!-- User creation and editing -->
+  <div class= "input_fields">
+      <h3>Name</h3>
+
+        <%= f.text_field :name %>
+
+
+      <h3>Password</h3>
+
+        <%= f.password_field :password %>
+
+      <h3>Gender</h3>
+
+        <%= f.select :gender, [['Guy'], ['Lady'], ['I don\'t subscribe to gender roles']] %>
+
+      <h3>Weight</h3>
+
+        <%= f.number_field :weight %>
+
+      <h3>Avatar</h3>
+
+        <%= f.file_field :avatar %>
+
+  </div>
+
+
+
+  <div class="input_buttons">
+      <%= f.submit "Submit", class: "large button expand radius round [secondary success alert]" %>
+  </div>
+
+  <% end %>

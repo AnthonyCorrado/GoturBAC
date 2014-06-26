@@ -14,8 +14,9 @@ has_attached_file :avatar, :styles => {:medium => "300x300>", :small => "150x150
 
 validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
-validates_presence_of :name, :password
+validates_presence_of :name, :password, :weight
 validates_uniqueness_of :name
+validates_numericality_of :weight, less_than: 1000
 
 
   def password

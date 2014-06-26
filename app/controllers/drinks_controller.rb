@@ -19,7 +19,7 @@ class DrinksController < ApplicationController
     user_drink = current_user.user_drinks.new(user_id: current_user.id, drink_id: user_drink_params[:drink_id])
     if user_drink.save
       redirect_to user_path(current_user)
-      flash[:success] = "Drink Added"
+      flash[:success] = "Another Drink Down!"
     else
       flash[:danger] = "Drink couldn't be added"
       render :new

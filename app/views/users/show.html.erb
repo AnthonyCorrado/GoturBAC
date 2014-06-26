@@ -1,35 +1,39 @@
-
+<!-- Method called in from helper file -->
 <% bac_calculate %>
 
 <h1 class= "text-center"><%= current_user.name %>'s Current Predicament</h1>
 
-          <% if current_user.avatar_file_name %>
+<!-- Pic only shows up if user has added one -->
+<% if current_user.avatar_file_name %>
+    <div id="profile-photo">
+        <center><%= image_tag current_user.avatar_url(:small) %></center><br /><br />
+    </div>
+<% end %>
 
-          <div id="profile-photo">
-            <center><%= image_tag current_user.avatar_url(:small) %></center><br /><br />
-            </div>
-          <% end %>
+<!-- BAC displayed to the thousandth -->
+<h1 class="text-center">UrBAC:<br>
+    <%= number_with_precision(current_user.current_bac, :precision => 3) + "%" %></h1>
 
+  <!-- message based on BAC level, found in BAC calculate method -->
+<h3><%= bac_message %><h3>
 
-
-        <h1 class="text-center">UrBAC:<br>
-          <%= number_with_precision(current_user.current_bac, :precision => 3) + "%" %></h1>
-
-          <h3><%= bac_message %><h3>
-
-<% if current_user.preferred_bac != nil %>
+    <!-- Only appears when user has set BAC -->
+    <% if current_user.preferred_bac != nil %>
         <h3>Preferred BAC:<br>
-          <%= number_with_precision(current_user.preferred_bac, :precision => 3) + "%" %></h3>
-          <% end %>
+            <%= number_with_precision(current_user.preferred_bac, :precision => 3) + "%" %></h3>
+    <% end %>
 
-<% if @drinktime < 60 %>
-          <h3>You've been drinking for <%= number_with_precision(@drinktime, :precision => 2) %> minutes!</h3>
-          <% else %>
-          <h3>You've been drinking for <%= number_with_precision((@drinktime / 60), :precision => 2) %> hours!</h3>
-          <% end %>
+      <!-- Contextually changes from minutes to hours based on time spent drinking -->
+    <% if @drinktime < 60 %>
+      <h3>You've been drinking for <%= number_with_precision(@drinktime, :precision => 2) %> minutes!</h3>
+    <% else %>
+      <h3>You've been drinking for <%= number_with_precision((@drinktime / 60), :precision => 2) %> hours!</h3>
+     <% end %>
 
 
-<div class= "input_buttons">
+    <div class= "input_buttons">
         <%= link_to "Add a Drink", new_user_drink_path(current_user), class: "large button radius round [secondary success alert]" %>
-          </div>
-<% $current_bac = current_user.current_bac %>
+    </div>
+
+      <!-- Set a global variable to be used when user sets preferred BAC in edit page -->
+  <% $current_bac = current_user.current_bac %>

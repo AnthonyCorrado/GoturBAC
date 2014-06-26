@@ -2,23 +2,26 @@
 <p>Find me in app/views/venues/index.html.erb</p>
 
 
-          <%= form_tag venues_path, :method => 'get' do %>
-          <%= text_field_tag :venue, params[:venue] %>
-          <%= submit_tag "Search", :venue_name => nil %>
-          <% end %>
+<!-- Currently unused view -->
+
+
+          <%#= form_tag venues_path, :method => 'get' do %>
+          <%#= text_field_tag :venue, params[:venue] %>
+          <%#= submit_tag "Search", :venue_name => nil %>
+          <%# end %>
 </div>
 
 <!-- Loops through each movie that has been searched for from RT API and displays the title, MPAA rating, and a detailed poster -->
 
 <!-- Possibly try to pass in s in the paths to save the specific movie -->
-<% @searchlists.each do |s| %>
+<%# @searchlists.each do |s| %>
 
 <div class="col-md-4 border text-center row-height">
-      <h2><%= s['title'] %></h2>
-      <%= s['mpaa_rating'] %><br>
+      <h2><%#= s['title'] %></h2>
+      <%#= s['mpaa_rating'] %><br>
       <!-- Display the ['posters']['profile'] poster using the rails image_tag helper -->
-      <%= image_tag s['posters']['detailed'] %><br>
-      <%= link_to "Review this Movie", new_user_movie_path(:user_id) %>
+      <%#= image_tag s['posters']['detailed'] %><br>
+      <%#= link_to "Review this Movie", new_user_movie_path(:user_id) %>
 </div>
 
 

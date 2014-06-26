@@ -1,64 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title><%= content_for?(:title) ? yield(:title) : "GoturBAC" %></title>
+      <title><%= content_for?(:title) ? yield(:title) : "GoturBAC" %></title>
 
-    <%= stylesheet_link_tag    "application" %>
-    <%= javascript_include_tag "vendor/modernizr" %>
-    <%= csrf_meta_tags %>
-    <link href='http://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
-  </head>
+      <%= stylesheet_link_tag    "application" %>
+      <%= javascript_include_tag "vendor/modernizr" %>
+      <%= csrf_meta_tags %>
+      <link href='http://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
+</head>
 
-  <body>
+<body>
 
-<div class="contain-to-grid fixed">
+  <div class="contain-to-grid fixed">
     <nav class="top-bar" data-topbar>
-  <ul class="title-area">
-    <li class="name">
-      <% if !current_user %><center><% end %>
-      <h1><a href= "https://www.uber.com/">GoturBAC</a></h1>
-    </center>
-    </li>
-     <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
-     <% if current_user %>
-    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
-    <% end %>
-  </ul>
-
-  <section class="top-bar-section">
-    <!-- Right Nav Section -->
-    <ul class="right">
+      <ul class="title-area">
+        <li class="name">
+          <% if !current_user %><center><% end %>
+          <h1><a href= "https://www.uber.com/">GoturBAC</a></h1>
+        </center>
+      </li>
       <% if current_user %>
-      <li class="has-dropdown">
-        <a href="#">User Options</a>
-        <ul class="dropdown">
-          <li><a href="#"><%= link_to "Profile Page", user_path(current_user) %></a></li>
-          <li><a href="#"><%= link_to "Edit Profile", edit_user_path(current_user) %></a></li>
-          <li><a href="#"><%= link_to "Log Out", session_path(current_user), :method => :delete %></a></li>
-        </ul>
-        <li class="has-dropdown">
-        <a href="#">Locations</a>
-        <ul class="dropdown">
-          <li><a href="#">Coming Soon!</a></li>
-          <li><a href="#">Coming Soon!</a></li>
-        </ul>
+      <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
       <% end %>
     </ul>
 
-    <!-- Left Nav Section -->
+    <section class="top-bar-section">
+      <!-- Right Nav Section -->
+      <ul class="right">
+        <% if current_user %>
+        <li class="has-dropdown">
+          <a href="#">User Options</a>
+          <ul class="dropdown">
+            <li><a href="#"><%= link_to "Profile Page", user_path(current_user) %></a></li>
+            <li><a href="#"><%= link_to "Edit Profile", edit_user_path(current_user) %></a></li>
+            <li><a href="#"><%= link_to "Log Out", session_path(current_user), :method => :delete %></a></li>
+          </ul>
+          <li class="has-dropdown">
+            <a href="#">Locations</a>
+            <ul class="dropdown">
+              <li><a href="#">Coming Soon!</a></li>
+              <li><a href="#">Coming Soon!</a></li>
+            </ul>
+            <% end %>
+          </ul>
 
-  </section>
-</nav>
-</div>
+          <!-- Left Nav Section -->
 
-     <% flash.each do |key, value| %>
-        <div class="alert alert-<%= key %>"><%= value %></div>
-      <% end %>
+        </section>
+      </nav>
+    </div>
+
+    <% flash.each do |key, value| %>
+    <div class="alert alert-<%= key %>"><%= value %></div>
+    <% end %>
 
     <%= yield %>
     <%= javascript_include_tag "application" %>
   </body>
-</html>
+  </html>

@@ -13,9 +13,9 @@ end
     @user = User.new(user_params)
     if @user.save
       session_create # This method is inhereited from the applicaiton_controller
-      redirect_to user_path(current_user), notice: "Welcome new user."
+      redirect_to user_path(current_user), notice: "Drunk Person Added."
     else
-      flash[:danger] = "User could not be created"
+      flash[:danger] = "Ya done goofed. Try Again."
       render :new
     end
   end
@@ -28,10 +28,10 @@ end
 
   def update
     if @user.update(user_params)
-      flash[:success] = "User updated"
+      flash[:success] = "You seem different somehow."
       redirect_to user_path
     else
-      flash[:danger] = "User couldn't be updated"
+      flash[:danger] = "You screwed something up."
       redirect_to edit_user_path
     end
   end

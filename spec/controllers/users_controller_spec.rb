@@ -14,9 +14,9 @@ RSpec.describe UsersController, :type => :controller do
       get :index
     end
 
-      it {should render_template :index}
+     xit {should render_template :index}
 
-      it {should respond_with(:success)}
+     xit {should respond_with(:success)}
   end
 
   describe 'GET new' do
