@@ -35,7 +35,6 @@
 <h3>Planned Technology Used</h3>
 
 <ul>
-    <li>AngularJS</li>
     <li>Foursquare API v2</li>
     <li>foursquare2 wrapper by Matt Mueller</li>
 </ul>
@@ -45,7 +44,6 @@
 <ol>
     <li>Incorporate Foursquare checkins and sign ons</li>
     <li>Optimize pages for mobile design</li>
-    <li>Incorporate AngularJS</li>
     <li>Add friend functionality</li>
     <li>Add user privacy settings</li>
 </ol>
