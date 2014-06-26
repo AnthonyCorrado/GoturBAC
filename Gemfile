@@ -61,6 +61,10 @@ gem 'pry-remote'
 gem 'pry-nav'
 gem 'colorize'
 
+group :production do
+  gem 'shelly-dependencies'
+end
+
 # Use unicorn as the app server
 # gem 'unicorn'
 
