@@ -18,7 +18,3 @@ def authenticate_user
       redirect_to new_session_path
     end
 end
-
-def current_bac
-  @current_bac = current_user.current_bac
-end

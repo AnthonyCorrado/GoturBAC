@@ -14,6 +14,10 @@
 
 <p>We've all had nights where we took things a little too far. Not only is it fun to see how drunk you are, it can also help you better guage just how much you need to drink to have a good time, and how much may be going overboard. By setting your preferred BAC, you won't have to ask yourself "Should I have one more?"</p>
 
+<h3>Legal Warning</h3>
+
+<p>GoturBAC IS NOT meant to be used as a measure of sobriety, and any BAC calculations should not be considered to be accurate. This app is for entertainment purposes only. Never drink and drive, ALWAYS designate a sober driver. Any suggestions offered by this app aren't meant to be taken seriously.</p>
+
 <h3>Current Technology Used</h3>
 
 <ul>
@@ -40,7 +44,6 @@
 
 <ol>
     <li>Incorporate Foursquare checkins and sign ons</li>
-    <li>Stylize pages</li>
     <li>Optimize pages for mobile design</li>
     <li>Incorporate AngularJS</li>
     <li>Add friend functionality</li>
