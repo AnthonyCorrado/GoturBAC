@@ -26,24 +26,22 @@ module UsersHelper
 # How BAC is calculated
 def bac_calculate
 
+# Set user start time if nothing has been set
+if current_user.start_time == nil
+  current_user.start_time = $starttime
+end
+
   # Time at user show page load minus global variable start time set at new session load,
   # divided by 60 so units are in minutes
-  @drinktime =  (Time.now - $starttime)/ 60
+  current_user.drink_time =  (Time.now - current_user.start_time)/ 60
 
-# user_drinks are reset if drinktime is under 20ish seconds. Easy if not elegant fix until I can get drinks to
-# clear on session destroy. Beginning to think drinks should have been tied to sessions rather
-# than users (DRINKING SESSIONS!!!!)
-if @drinktime < 0.35
 
-  current_user.user_drinks.clear
-
-end
 # Add alcohol content of every user_drink to be used in BAC calc
-$total_alcohol = 0
+current_user.total_alcohol = 0
 
 current_user.user_drinks.each do |d|
 
-  $total_alcohol = $total_alcohol + d.drink.alcohol
+current_user.total_alcohol = current_user.total_alcohol + d.drink.alcohol
 
 end
 
@@ -51,7 +49,7 @@ end
 # and then dividing that amount by the users weight. You then find the product of time spent
 # drinking and the average amount of alcohol a person can process in a minute, and subtract
 #it
-current_user.current_bac = ($total_alcohol * 7.5 / current_user.weight) - (@drinktime * 0.00025)
+current_user.current_bac = (current_user.total_alcohol * 7.5 / current_user.weight) - (current_user.drink_time * 0.00025)
 
 # Prevent BAC from displaying negative
 if current_user.current_bac < 0

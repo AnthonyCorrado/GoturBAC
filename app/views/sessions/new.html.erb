@@ -18,6 +18,6 @@
         <%= link_to "Sign Up For Madness", new_user_path, class: "large button expand radius round [secondary success alert]" %>
     </div>
 
-<!-- starttime is a global variable created when the session page loads, used in the BAC calc -->
+<!-- Global variable used so user start time can be set over on user controller -->
 <% $starttime = Time.now %>
 <% end %>
