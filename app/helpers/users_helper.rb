@@ -26,14 +26,19 @@ module UsersHelper
 # How BAC is calculated
 def bac_calculate
 
-# Set user start time if nothing has been set
-if current_user.start_time == nil
-  current_user.start_time = $starttime
-end
-
   # Time at user show page load minus global variable start time set at new session load,
   # divided by 60 so units are in minutes
-  current_user.drink_time =  (Time.now - current_user.start_time)/ 60
+
+if current_user.user_drinks == 0
+current_user.start_time = Time.now
+current_user.start_time.save
+# Props to Eric!!!!
+end
+
+
+current_user.drink_time =  (Time.now - $starttime)/ 60
+
+
 
 
 # Add alcohol content of every user_drink to be used in BAC calc

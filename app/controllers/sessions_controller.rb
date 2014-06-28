@@ -17,6 +17,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    current_user.start_time = nil
     current_user.user_drinks.clear
     session.delete(:remember_token)
     redirect_to root_path

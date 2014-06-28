@@ -1,6 +1,12 @@
 <!-- Method called in from helper file -->
+ <!-- Set user start time if nothing has been set -->
+
+
 
 <% bac_calculate %>
+
+<%= current_user.start_time %>
+
 
 <h1 class= "text-center"><%= current_user.name %>'s Current Predicament</h1>
 
